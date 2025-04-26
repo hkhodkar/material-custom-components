@@ -1,0 +1,10 @@
+<mat-checkbox
+  [checked]="_value"
+  (change)="onCheckboxChange($event)"
+  [disabled]="disabled"
+>
+  {{ option().label }}
+</mat-checkbox>
+@if(control.invalid && showRequireError()) {
+<mat-error> Please check the checkbox</mat-error>
+}

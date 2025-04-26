@@ -1,0 +1,12 @@
+<mat-radio-group
+  [value]="_value"
+  (change)="onSelectionChange($event)"
+  [disabled]="disabled"
+>
+  @for (option of options(); track $index) {
+  <mat-radio-button [value]="option.value">
+    {{ option.label }}
+  </mat-radio-button>
+  }
+</mat-radio-group>
+<mat-error *ngIf="control?.invalid"> Please select an option </mat-error>

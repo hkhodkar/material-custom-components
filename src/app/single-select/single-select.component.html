@@ -1,0 +1,17 @@
+<mat-form-field [appearance]="appearance()">
+  <mat-label>Select an option</mat-label>
+  <mat-select
+    [value]="_value"
+    (selectionChange)="onSelectionChange($event)"
+    [disabled]="disabled"
+  >
+    @for (option of options(); track $index) {
+    <mat-option [value]="option.value">
+      {{ option.label }}
+    </mat-option>
+    }
+  </mat-select>
+  <mat-error *ngIf="control?.invalid && showRequireError()">
+    Please select a value
+  </mat-error>
+</mat-form-field>

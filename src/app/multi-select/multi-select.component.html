@@ -1,0 +1,18 @@
+<mat-form-field [appearance]="appearance()">
+  <mat-label>{{ label() }}</mat-label>
+  <mat-select
+    multiple
+    [value]="_value"
+    (selectionChange)="onSelectionChange($event)"
+    [disabled]="disabled"
+  >
+    @for (option of options(); track $index) {
+    <mat-option [value]="option.value">
+      {{ option.label }}
+    </mat-option>
+    }
+  </mat-select>
+  @if(control.invalid && showRequireError()) {
+  <mat-error> Please select at least one value </mat-error>
+  }
+</mat-form-field>

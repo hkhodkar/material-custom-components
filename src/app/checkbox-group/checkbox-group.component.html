@@ -1,0 +1,11 @@
+@for (option of options(); track $index) {
+<div>
+  <mat-checkbox [checked]="_value.includes(option.value)" (change)="onCheckboxChange(option.value, $event)"
+    [disabled]="disabled">
+    {{ option.label }}
+  </mat-checkbox>
+</div>
+<mat-error *ngIf="control?.invalid && showRequireError()">
+  Please select at least one option
+</mat-error>
+}
