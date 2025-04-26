@@ -32,8 +32,6 @@ export class AppComponent {
   }
 
   onSubmit() {
-    console.log('asdasdasd');
-
     if (this.form.valid) {
       // Process form data...
       console.log('Form Value:', this.form.value);

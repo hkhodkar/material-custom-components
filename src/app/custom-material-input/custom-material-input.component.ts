@@ -1,19 +1,10 @@
 import {
   Component,
-  forwardRef,
-  Input,
-  Optional,
-  Self,
   ChangeDetectionStrategy,
-  OnInit,
   inject,
   input,
 } from '@angular/core';
 import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  NgControl,
-  FormControl,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -26,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { CustomErrorStateMatcher } from './CustomErrorStateMatcher';
 import { InputTypes } from '../models/input-types';
+import { BaseControlValueAccessor } from '../models/base-control-value-accessor';
 
 @Component({
   selector: 'app-custom-material-input',
@@ -47,44 +39,20 @@ import { InputTypes } from '../models/input-types';
     },
   ],
 })
-export class CustomMaterialInputComponent implements ControlValueAccessor {
+export class CustomMaterialInputComponent extends BaseControlValueAccessor<string> {
   matcher = inject(ErrorStateMatcher);
-  ngControl = inject(NgControl, { optional: true, self: true });
 
   value = '';
-  disabled = false;
   label = input.required<string>();
   type = input<InputTypes>('text');
   appearance = input<MatFormFieldAppearance>('outline');
   placeholder = input<string>();
 
-  private onChange = (value: any) => {};
-  private onTouched = () => {};
-
   constructor() {
+    super();
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
-  }
-
-  get control(): FormControl {
-    return this.ngControl?.control as FormControl;
-  }
-
-  writeValue(value: any): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
   }
 
   onInput(event: Event) {
