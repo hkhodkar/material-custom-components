@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  grid-template-rows: 80px auto;
+  grid-template-columns: auto;
+  height: 100vh;
+  background-color: #e3e3e3;
+  header {
+    padding-inline: 1rem;
+    width: 100%;
+    background: #fe8080;
+  }
+
+  form {
+    place-self: center;
+    border-radius: 2rem;
+    background-color: #fff;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 300px;
+    gap: 1rem;
+  }
+}

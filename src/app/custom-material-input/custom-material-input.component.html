@@ -1,0 +1,35 @@
+<mat-form-field [appearance]="appearance()">
+  <mat-label>{{ label() }}</mat-label>
+
+  <input
+    matInput
+    [type]="type()"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+    [formControl]="control"
+    [errorStateMatcher]="matcher"
+  />
+
+  <mat-error *ngIf="control?.errors?.['required']">
+    This field is required.
+  </mat-error>
+
+  <mat-error *ngIf="control?.errors?.['email']">
+    Please enter a valid email address.
+  </mat-error>
+
+  <mat-error *ngIf="control?.errors?.['minlength']">
+    Minimum length is
+    {{ control.errors?.['minlength'].requiredLength }} characters.
+  </mat-error>
+
+  <mat-error *ngIf="control?.errors?.['maxlength']">
+    Maximum length is
+    {{ control.errors?.['maxlength'].requiredLength }} characters.
+  </mat-error>
+
+  <mat-error *ngIf="control?.errors?.['customError']">
+    {{ control.errors?.['customError'] }}
+  </mat-error>
+</mat-form-field>

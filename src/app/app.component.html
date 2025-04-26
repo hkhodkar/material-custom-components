@@ -1,1 +1,12 @@
-<app-search-form-field-container />
+<header>
+  <h1>Material custom components</h1>
+</header>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <app-custom-material-input
+    label="Email Address"
+    type="email"
+    formControlName="email"
+  >
+  </app-custom-material-input>
+  <button mat-flat-button type="submit">Submit</button>
+</form>
