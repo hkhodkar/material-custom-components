@@ -1,0 +1,138 @@
+<button mat-raised-button color="primary" [matMenuTriggerFor]="mainMenu">
+  <mat-icon>add</mat-icon> Add Field
+</button>
+
+<mat-menu #mainMenu="matMenu">
+  <!-- Data Collection Submenu -->
+  <button mat-menu-item [matMenuTriggerFor]="dataCollection">
+    <mat-icon>assignment</mat-icon>
+    <span>Data collection</span>
+  </button>
+  
+  <!-- Dynamic Submenu -->
+  <button mat-menu-item [matMenuTriggerFor]="dynamic">
+    <mat-icon>bolt</mat-icon>
+    <span>Dynamic</span>
+  </button>
+
+  <!-- Structural Submenu -->
+  <button mat-menu-item [matMenuTriggerFor]="structural">
+    <mat-icon>view_quilt</mat-icon>
+    <span>Structural</span>
+  </button>
+
+  <!-- Other Submenu -->
+  <button mat-menu-item [matMenuTriggerFor]="other">
+    <mat-icon>more_horiz</mat-icon>
+    <span>Other</span>
+  </button>
+</mat-menu>
+
+<!-- Submenus -->
+<mat-menu #dataCollection="matMenu">
+  <button mat-menu-item>
+    <mat-icon>check_box</mat-icon>
+    <span>Checkbox</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>event</mat-icon>
+    <span>Date</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>access_time</mat-icon>
+    <span>Date & Time</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>arrow_drop_down</mat-icon>
+    <span>Dropdown</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>numbers</mat-icon>
+    <span>Number</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>merge_type</mat-icon>
+    <span>Number & Date</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>radio_button_checked</mat-icon>
+    <span>Radio button</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>calendar_today</mat-icon>
+    <span>Year</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>tune</mat-icon>
+    <span>Slider</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>text_fields</mat-icon>
+    <span>Test</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>text_fields</mat-icon>
+    <span>Test (multiline)</span>
+  </button>
+</mat-menu>
+
+<mat-menu #dynamic="matMenu">
+  <button mat-menu-item>
+    <mat-icon>calculate</mat-icon>
+    <span>Calculation</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>link</mat-icon>
+    <span>Link</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>qr_code</mat-icon>
+    <span>QR code</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>summarize</mat-icon>
+    <span>Summary</span>
+  </button>
+</mat-menu>
+
+<mat-menu #structural="matMenu">
+  <button mat-menu-item>
+    <mat-icon>grid_on</mat-icon>
+    <span>Grid</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>image</mat-icon>
+    <span>Image</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notes</mat-icon>
+    <span>Remark</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>upload_file</mat-icon>
+    <span>Upload file</span>
+  </button>
+</mat-menu>
+
+<mat-menu #other="matMenu">
+  <button mat-menu-item>
+    <mat-icon>input</mat-icon>
+    <span>Import survey</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>add_circle</mat-icon>
+    <span>Add survey button</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>shuffle</mat-icon>
+    <span>Randomisation</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>repeat</mat-icon>
+    <span>Repeated measure</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>replay</mat-icon>
+    <span>Repeated data button</span>
+  </button>
+</mat-menu>

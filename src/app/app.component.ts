@@ -16,6 +16,8 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { CheckBoxComponent } from './check-box/check-box.component';
 import { OptionModel } from './models/option.model';
 import { ButtonComponent } from "./button/button.component";
+import { MenuAnelComponent } from "./menu-anel/menu-anel.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +30,9 @@ import { ButtonComponent } from "./button/button.component";
     SingleSelectComponent,
     MultiSelectComponent,
     CheckBoxComponent,
-    ButtonComponent
+    ButtonComponent,
+    MenuAnelComponent,
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
