@@ -2,7 +2,11 @@
   <h1>Material custom components</h1>
 </header>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <app-custom-material-input label="Email Address" type="email" formControlName="email" />
+  <app-custom-material-input
+    label="Email Address"
+    type="email"
+    formControlName="email"
+  />
   <app-radio-group formControlName="radio" [options]="radioOptions">
   </app-radio-group>
 
@@ -16,5 +20,12 @@
 
   <app-multi-select formControlName="multiSelect" [options]="multiOptions">
   </app-multi-select>
-  <button mat-flat-button type="submit" [disabled]="form.invalid">Submit</button>
+  <app-button
+    label="Add new"
+    color="primary"
+    shape="rounded"
+    type="submit"
+    icon="edit"
+    [disabled]="form.invalid"
+    />
 </form>

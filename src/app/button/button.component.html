@@ -1,0 +1,75 @@
+@if (shape() === "rounded" || shape() === "pill") {
+  @switch (color()) {
+    @case ("primary") {
+      <button
+        mat-flat-button
+        [class.btn-rounded]="shape() === 'rounded'"
+        [class.btn-pill]="shape() === 'pill'"
+        [disabled]="disabled()"
+        [type]="type()"
+        (click)="onClick()"
+      >
+        @if (icon()) {
+          <div class="btn-icon">
+            <mat-icon>{{ icon() }}</mat-icon>
+            <span>{{ label() }}</span>
+          </div>
+        } @else {
+          <span>{{ label() }}</span>
+        }
+      </button>
+    }
+    @case ("accent") {
+      <button
+        mat-stroked-button
+        [class.btn-rounded]="shape() === 'rounded'"
+        [class.btn-pill]="shape() === 'pill'"
+        [disabled]="disabled()"
+        [type]="type()"
+        (click)="onClick()"
+      >
+        @if (icon()) {
+          <div class="btn-icon">
+            <mat-icon>{{ icon() }}</mat-icon>
+            <span>{{ label() }}</span>
+          </div>
+        } @else {
+          <span>{{ label() }}</span>
+        }
+      </button>
+    }
+    @case ("default") {
+      <button
+        mat-button
+        [class.btn-rounded]="shape() === 'rounded'"
+        [class.btn-pill]="shape() === 'pill'"
+        [disabled]="disabled()"
+        [type]="type()"
+        (click)="onClick()"
+      >
+        @if (icon()) {
+          <div class="btn-icon">
+            <mat-icon>{{ icon() }}</mat-icon>
+            <span>{{ label() }}</span>
+          </div>
+        } @else {
+          <span>{{ label() }}</span>
+        }
+      </button>
+    }
+  }
+}
+
+@if (shape() === "fab" && icon()) {
+  <button
+    mat-fab
+    class="btn-fab"
+    [disabled]="disabled()"
+    [type]="type()"
+    (click)="onClick()"
+  >
+    @if (icon()) {
+      <mat-icon>{{ icon() }}</mat-icon>
+    }
+  </button>
+}

@@ -15,6 +15,7 @@ import { SingleSelectComponent } from './single-select/single-select.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { CheckBoxComponent } from './check-box/check-box.component';
 import { OptionModel } from './models/option.model';
+import { ButtonComponent } from "./button/button.component";
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ import { OptionModel } from './models/option.model';
     SingleSelectComponent,
     MultiSelectComponent,
     CheckBoxComponent,
+    ButtonComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -71,7 +73,7 @@ export class AppComponent {
         Validators.maxLength(50),
       ]),
       radio: new FormControl(null, Validators.required),
-      checkbox: new FormControl(false, Validators.required),
+      checkbox: new FormControl(false, Validators.requiredTrue),
       checkboxes: new FormControl([], Validators.required),
       singleSelect: new FormControl(null, Validators.required),
       multiSelect: new FormControl([], Validators.required),
@@ -79,6 +81,7 @@ export class AppComponent {
   }
 
   onSubmit() {
+    console.log(this.form.value)
     if (this.form.valid) {
       // Process form data...
       console.log('Form Value:', this.form.value);
