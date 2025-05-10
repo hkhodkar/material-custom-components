@@ -18,6 +18,8 @@ import { OptionModel } from './models/option.model';
 import { ButtonComponent } from "./button/button.component";
 import { MenuAnelComponent } from "./menu-anel/menu-anel.component";
 import { CommonModule } from '@angular/common';
+import { ExpandMenuComponent } from "./expand-menu/expand-menu.component";
+import { TableComponent } from "./table/table.component";
 
 @Component({
   selector: 'app-root',
@@ -32,7 +34,9 @@ import { CommonModule } from '@angular/common';
     CheckBoxComponent,
     ButtonComponent,
     MenuAnelComponent,
-    CommonModule
+    CommonModule,
+    ExpandMenuComponent,
+    TableComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -68,6 +72,8 @@ export class AppComponent {
     { label: 'Multi 3', value: 3 },
   ];
 
+  
+
   ngOnInit() {
     this.form = new FormGroup({
       email: new FormControl('', [
@@ -84,6 +90,7 @@ export class AppComponent {
     });
   }
 
+
   onSubmit() {
     console.log(this.form.value)
     if (this.form.valid) {
@@ -91,4 +98,6 @@ export class AppComponent {
       console.log('Form Value:', this.form.value);
     }
   }
+
+
 }

@@ -1,0 +1,22 @@
+<mat-expansion-panel
+  #panel="matExpansionPanel"
+  *ngFor="let group of menuGroups"
+  [hideToggle]="true"
+  class="panel-no-gap"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>
+        {{ panel.expanded ? "arrow_drop_down" : "arrow_right" }}
+      </mat-icon>
+      {{ group.label }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <mat-nav-list>
+    <div mat-list-item *ngFor="let item of group.children" href="#">
+      <mat-icon matListIcon>{{ item.icon }}</mat-icon>
+      <span matLine>{{ item.label }}</span>
+    </div>
+  </mat-nav-list>
+</mat-expansion-panel>

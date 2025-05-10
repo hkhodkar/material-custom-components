@@ -1,34 +1,41 @@
 <header>
   <h1>Material custom components</h1>
 </header>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <app-custom-material-input
-    label="Email Address"
-    type="email"
-    formControlName="email"
-  />
-  <app-radio-group formControlName="radio" [options]="radioOptions">
-  </app-radio-group>
+<app-table />
 
-  <app-check-box formControlName="checkbox" [option]="checkboxOption" />
-
-  <app-checkbox-group formControlName="checkboxes" [options]="checkboxOptions">
-  </app-checkbox-group>
-
-  <app-single-select formControlName="singleSelect" [options]="selectOptions">
-  </app-single-select>
-
-  <app-multi-select formControlName="multiSelect" [options]="multiOptions">
-  </app-multi-select>
-  <app-button
-    label="Add new"
-    color="primary"
-    shape="rounded"
-    type="submit"
-    icon="edit"
-    [disabled]="form.invalid"
+<div class="section">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <app-custom-material-input
+      label="Email Address"
+      type="email"
+      formControlName="email"
     />
-</form>
+    <app-radio-group formControlName="radio" [options]="radioOptions">
+    </app-radio-group>
 
+    <app-check-box formControlName="checkbox" [option]="checkboxOption" />
 
-<app-menu-panel />
+    <app-checkbox-group
+      formControlName="checkboxes"
+      [options]="checkboxOptions"
+    >
+    </app-checkbox-group>
+
+    <app-single-select formControlName="singleSelect" [options]="selectOptions">
+    </app-single-select>
+
+    <app-multi-select formControlName="multiSelect" [options]="multiOptions">
+    </app-multi-select>
+    <app-button
+      label="Add new"
+      color="primary"
+      shape="rounded"
+      type="submit"
+      icon="edit"
+      [disabled]="form.invalid"
+    />
+  </form>
+
+  <app-menu-panel />
+  <app-expand-menu />
+</div>

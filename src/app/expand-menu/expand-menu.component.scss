@@ -1,0 +1,9 @@
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  box-shadow: none !important;
+}
+
+.mat-mdc-nav-list .mat-mdc-list-item,
+.mat-expansion-panel {
+  border-radius: unset !important;
+}
