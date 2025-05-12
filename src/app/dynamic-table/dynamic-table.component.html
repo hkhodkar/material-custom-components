@@ -1,0 +1,14 @@
+<table mat-table [dataSource]="rows()" class="mat-elevation-z1">
+  <ng-container *ngFor="let col of columns()" [matColumnDef]="col.key">
+    <mat-header-cell *matHeaderCellDef>{{ col.header }}</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <ng-container *ngIf="col.component; else defaultCell">
+        <ng-container *ngComponentOutlet="col.component; injector: createInjector(row)" />
+      </ng-container>
+      <ng-template #defaultCell>{{ row[col.key] }}</ng-template>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns()"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns()"></mat-row>
+</table>

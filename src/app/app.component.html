@@ -3,6 +3,8 @@
 </header>
 <app-table />
 
+<app-dynamic-table [columns]="columns" [rows]="rows"/>
+
 <div class="section">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <app-custom-material-input

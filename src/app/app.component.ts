@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SearchFormFieldContainerComponent } from './search-form-field-container/search-form-field-container.component';
 import {
@@ -20,6 +20,9 @@ import { MenuAnelComponent } from "./menu-anel/menu-anel.component";
 import { CommonModule } from '@angular/common';
 import { ExpandMenuComponent } from "./expand-menu/expand-menu.component";
 import { TableComponent } from "./table/table.component";
+import { DynamicTableComponent, TableColumn } from './dynamic-table/dynamic-table.component';
+import { TableStatusComponent } from './table-status/table-status.component';
+import { TableActionComponent } from './table-action/table-action.component';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +39,8 @@ import { TableComponent } from "./table/table.component";
     MenuAnelComponent,
     CommonModule,
     ExpandMenuComponent,
-    TableComponent
+    TableComponent,
+    DynamicTableComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -72,7 +76,7 @@ export class AppComponent {
     { label: 'Multi 3', value: 3 },
   ];
 
-  
+
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -98,6 +102,17 @@ export class AppComponent {
       console.log('Form Value:', this.form.value);
     }
   }
+
+  rows = signal([
+    { id: 1, name: 'Alice', status: 'active' },
+    { id: 2, name: 'Bob', status: 'inactive' },
+  ]);
+
+  columns = signal<TableColumn[]>([
+    { key: 'name', header: 'Name' },
+    { key: 'status', header: 'Status', component: TableStatusComponent },
+    { key: 'actions', header: 'Actions', component: TableActionComponent },
+  ]);
 
 
 }
