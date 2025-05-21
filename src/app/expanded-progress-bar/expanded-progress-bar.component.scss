@@ -1,0 +1,33 @@
+@use "@angular/material" as mat;
+
+:host {
+  @include mat.expansion-overrides(
+    (
+      header-collapsed-state-height: 124px,
+    )
+  );
+  mat-expansion-panel-header {
+    padding: 0 !important;
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    &-labels {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .section-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: .75rem;
+  }
+}

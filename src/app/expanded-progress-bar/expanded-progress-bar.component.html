@@ -1,0 +1,51 @@
+<div>{{ title }}</div>
+<mat-expansion-panel [expanded]="false" [hideToggle]="true">
+  <mat-expansion-panel-header>
+    <div class="header">
+      <div class="header-actions">
+        <button mat-icon-button>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="progress"
+          class="progress-bar"
+        >
+        </mat-progress-bar>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Edit</button>
+          <button mat-menu-item>Delete</button>
+        </mat-menu>
+      </div>
+      <div class="header-labels">
+        <mat-chip-listbox>
+          <mat-chip>test</mat-chip>
+          <mat-chip>test2</mat-chip>
+        </mat-chip-listbox>
+      </div>
+    </div>
+  </mat-expansion-panel-header>
+
+  <div *ngFor="let row of rows" class="section-row">
+    <div>
+      <span>{{ row.label }}</span>
+      <mat-chip-listbox>
+        <mat-chip *ngIf="row.repeating">Repeating data</mat-chip>
+        <mat-chip *ngFor="let tag of row.tags" selected>{{ tag }}</mat-chip>
+      </mat-chip-listbox>
+    </div>
+
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Edit</button>
+        <button mat-menu-item>Delete</button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-expansion-panel>

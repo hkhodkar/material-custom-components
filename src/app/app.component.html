@@ -37,7 +37,19 @@
       [disabled]="form.invalid"
     />
   </form>
-
+  <app-expanded-progress-bar
+  title="Patient characteristic"
+  [progress]="60"
+  [rows]="[
+    { label: 'Demographic', tags: ['Locked', 'Signed', 'SDV'] },
+    { label: 'Diagnosis and medical history', tags: ['Locked', 'Signed', 'SDV'] },
+    { label: 'About career', tags: ['Locked', 'Signed', 'SDV'] },
+    { label: 'Heart rate', tags: ['Locked', 'Signed'], repeating: true }
+  ]">
+</app-expanded-progress-bar>
   <app-menu-panel />
   <app-expand-menu />
 </div>
+
+
+

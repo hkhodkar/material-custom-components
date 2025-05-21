@@ -23,6 +23,7 @@ import { TableComponent } from "./table/table.component";
 import { DynamicTableComponent, TableColumn } from './dynamic-table/dynamic-table.component';
 import { TableStatusComponent } from './table-status/table-status.component';
 import { TableActionComponent } from './table-action/table-action.component';
+import { ExpandedProgressBarComponent } from "./expanded-progress-bar/expanded-progress-bar.component";
 
 @Component({
   selector: 'app-root',
@@ -40,7 +41,8 @@ import { TableActionComponent } from './table-action/table-action.component';
     CommonModule,
     ExpandMenuComponent,
     TableComponent,
-    DynamicTableComponent
+    DynamicTableComponent,
+    ExpandedProgressBarComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
