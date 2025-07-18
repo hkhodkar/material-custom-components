@@ -53,3 +53,37 @@
 
 
 
+
+
+ <mat-card>
+
+  <mat-card-content>
+    <div class="toolbar">
+      <mat-form-field appearance="outline" class="mr">
+        <mat-label>Time Range</mat-label>
+        <mat-select
+          [value]="selectedRange()"
+          (selectionChange)="setRange($event.value)"
+        >
+          <mat-option *ngFor="let range of timeRanges" [value]="range">{{
+            range
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="randomizeData()">
+        Randomize Data
+      </button>
+    </div>
+    <mat-tab-group [(selectedIndex)]="selectedTabIndex">
+      <mat-tab label="Line Chart">
+        <app-high-charts [chartOptions]="lineChartOptions()"></app-high-charts>
+      </mat-tab>
+      <mat-tab label="Column Chart">
+        <app-high-charts [chartOptions]="columnChartOptions()"></app-high-charts>
+      </mat-tab>
+      <mat-tab label="Pie Chart">
+        <app-high-charts [chartOptions]="pieChartOptions()"></app-high-charts>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

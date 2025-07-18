@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SearchFormFieldContainerComponent } from './search-form-field-container/search-form-field-container.component';
 import {
@@ -24,6 +24,16 @@ import { DynamicTableComponent, TableColumn } from './dynamic-table/dynamic-tabl
 import { TableStatusComponent } from './table-status/table-status.component';
 import { TableActionComponent } from './table-action/table-action.component';
 import { ExpandedProgressBarComponent } from "./expanded-progress-bar/expanded-progress-bar.component";
+import { HighChartsComponent } from './high-charts/high-charts.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+
+type TimeRange = 'Last Week' | 'Last Month' | 'Last Year';
+
+
 
 @Component({
   selector: 'app-root',
@@ -42,7 +52,14 @@ import { ExpandedProgressBarComponent } from "./expanded-progress-bar/expanded-p
     ExpandMenuComponent,
     TableComponent,
     DynamicTableComponent,
-    ExpandedProgressBarComponent
+    ExpandedProgressBarComponent,
+    MatCardModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    HighChartsComponent,
+    MatTabsModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -116,5 +133,92 @@ export class AppComponent {
     { key: 'actions', header: 'Actions', component: TableActionComponent },
   ]);
 
+  // --- UI State
+  timeRanges: TimeRange[] = ['Last Week', 'Last Month', 'Last Year'];
+  selectedRange = signal<TimeRange>('Last Month');
+  selectedTabIndex = 0;
 
+  setRange(val: TimeRange) {
+    this.selectedRange.set(val);
+  }
+
+  // --- Chart Data
+  private baseData: Record<TimeRange, number[]> = {
+    'Last Week': [13, 24, 15, 29, 30, 21, 19],
+    'Last Month': [
+      120, 160, 140, 130, 170, 190, 200, 170,
+      150, 180, 210, 220, 200, 190, 160, 150,
+      140, 170, 160, 180, 200, 210, 220, 230,
+      240, 250, 230, 220, 210, 200
+    ],
+    'Last Year': [
+      1200, 1100, 1300, 1400, 1350, 1500,
+      1600, 1550, 1700, 1750, 1650, 1800
+    ],
+  };
+
+  chartData = signal<number[]>([...this.baseData[this.selectedRange()]]);
+
+  // React to range change
+  constructor() {
+    effect(() => {
+      this.chartData.set([...this.baseData[this.selectedRange()]]);
+    });
+  }
+
+  randomizeData() {
+    const len = this.chartData().length;
+    this.chartData.set(Array.from({ length: len }, () => Math.floor(Math.random() * 200 + 1)));
+  }
+
+  // --- Computed Chart Options with correct types
+  lineChartOptions = computed<Highcharts.Options>(() => ({
+    chart: { type: 'line' },
+    title: { text: 'Sales Trend' },
+    xAxis: { categories: this.getCategories() },
+    yAxis: { title: { text: 'Sales' } },
+    series: [{
+      type: 'line',    // Explicit type for type safety
+      name: 'Sales',
+      data: this.chartData(),
+    }],
+    credits: { enabled: false },
+  }));
+
+  columnChartOptions = computed<Highcharts.Options>(() => ({
+    chart: { type: 'column' },
+    title: { text: 'Sales Trend' },
+    xAxis: { categories: this.getCategories() },
+    yAxis: { title: { text: 'Sales' } },
+    series: [{
+      type: 'column',   // Explicit type for type safety
+      name: 'Sales',
+      data: this.chartData(),
+    }],
+    credits: { enabled: false },
+  }));
+
+  pieChartOptions = computed<Highcharts.Options>(() => ({
+    chart: { type: 'pie' },
+    title: { text: 'Sales Share' },
+    series: [{
+      type: 'pie',
+      name: 'Sales',
+      data: this.chartData().map((val, idx) => ({
+        name: this.getCategories()[idx] || `Day ${idx + 1}`,
+        y: val
+      })),
+    }],
+    credits: { enabled: false },
+  }));
+
+  getCategories(): string[] {
+    if (this.selectedRange() === 'Last Week') {
+      return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    } else if (this.selectedRange() === 'Last Month') {
+      return Array.from({ length: this.chartData().length }, (_, i) => `Day ${i + 1}`);
+    } else {
+      return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    }
+   }
 }
